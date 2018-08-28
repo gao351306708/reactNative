@@ -1,116 +1,211 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-import React from 'react';
+/*
+* APP启动首页
+* */
+import React ,{Component} from 'react'
 import {
-    Text,
-    StyleSheet,
-    View,
     Image,
-    FlatList,
-    Button,
-    Alert,TouchableHighlight, TouchableOpacity, TouchableNativeFeedback, TouchableWithoutFeedback
+    StyleSheet,
 } from 'react-native';
+import {
+    TabNavigator,
+    StackNavigator,
+    DrawerNavigator,
+} from 'react-navigation';
+//import Home from './app/container/mainContainer';
+import ReadingScreen from './app/container/readingContainer';
+import MusicScreen from './app/container/musicContainer';
+import MovieScreen from './app/container/movieContainer';
+import PictureScreen from './app/container/pictureContainer';
+//侧滑菜单的页面
+import MineScreen from "./app/container/drawer/Mine";
+/**
+ * 配置底部标签
+ */
 
+const Tab = TabNavigator({
+    Read:{
+        screen: ReadingScreen,
+        navigationOptions: {
+            //stackNavigator的属性
+            headerTitle: '阅读',
+            gestureResponseDistance: {horizontal: 300},
+            headerBackTitle: null,
+            headerStyle: {backgroundColor: '#EB3695'},//导航栏的样式
+            headerTitleStyle: {//导航栏文字的样式
+                color: 'red',
+                //设置标题的大小
+                fontSize: 14,
+                //居中显示
+                alignSelf: 'center',
+            },
+            //tab 的属性
+            tabBarLabel:'阅读',
+            tabBarIcon: ({tintColor}) => (
+                <Image
+                    source={require('./app/image/reading.png')}
+                    style={[{height: 38, width: 40, marginTop: 10}, {tintColor: tintColor}]}/>
+            ),
 
-var MOCKED_MOVIES_DATA = [
-  {
-    title: "标题",
-    year: "2015",
-    posters: { thumbnail: "http://i.imgur.com/UePbdph.jpg" }
-  }
-];
-var REQUEST_URL = "https://raw.githubusercontent.com/facebook/react-native/0.51-stable/docs/MoviesExample.json";
-export default class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state={
-      movies:null,
-      data:[],
-      load:false
+        },
+    },
+    Music:{
+        screen: MusicScreen,
+        navigationOptions: {
+            //stackNavigator的属性
+            headerTitle: '音乐',
+            gestureResponseDistance: {horizontal: 300},
+            headerBackTitle: null,
+            headerStyle: {backgroundColor: '#EB3695'},//导航栏的样式
+            headerTitleStyle: {//导航栏文字的样式
+                color: 'red',
+                //设置标题的大小
+                fontSize: 14,
+                //居中显示
+                alignSelf: 'center',
+            },
+            //tab 的属性
+            tabBarLabel:'音乐',
+            tabBarIcon: ({tintColor}) => (
+                <Image
+                    source={require('./app/image/music.png')}
+                    style={[{height: 38, width: 40, marginTop: 10}, {tintColor: tintColor}]}/>
+            ),
+
+        },
+    },
+    Movie:{
+        screen: MovieScreen,
+        navigationOptions: {
+            //stackNavigator的属性
+            headerTitle: '影视',
+            gestureResponseDistance: {horizontal: 300},
+            headerBackTitle: null,
+            headerStyle: {backgroundColor: '#EB3695'},//导航栏的样式
+            headerTitleStyle: {//导航栏文字的样式
+                color: 'red',
+                //设置标题的大小
+                fontSize: 14,
+                //居中显示
+                alignSelf: 'center',
+            },
+            //tab 的属性
+            tabBarLabel:'影视',
+            tabBarIcon: ({tintColor}) => (
+                <Image
+                    source={require('./app/image/movie.png')}
+                    style={[{height: 38, width: 40, marginTop: 10}, {tintColor: tintColor}]}/>
+            ),
+
+        },
+    },
+    Picture:{
+        screen: PictureScreen,
+        navigationOptions: {
+            //stackNavigator的属性
+            headerTitle: '图片',
+            gestureResponseDistance: {horizontal: 300},
+            headerBackTitle: null,
+            headerStyle: {backgroundColor: '#EB3695'},//导航栏的样式
+            headerTitleStyle: {//导航栏文字的样式
+                color: 'red',
+                //设置标题的大小
+                fontSize: 14,
+                //居中显示
+                alignSelf: 'center',
+            },
+            //tab 的属性
+            tabBarLabel:'图片',
+            tabBarIcon: ({tintColor}) => (
+                <Image
+                    source={require('./app/image/home.png')}
+                    style={[{height: 38, width: 40, marginTop: 8}, {tintColor: tintColor}]}/>
+            ),
+
+        },
     }
-  }
-  componentDidMount(){
-    this.fetchData()
-  }
-  fetchData=()=>{
-    fetch(REQUEST_URL)
-        .then((res)=>res.json())
-        .then((resData)=>{
-          console.log("fetch==>",resData)
-          this.setState({
-            data:this.state.data.concat(resData.movies),
-            load:true
-          })
-        })
-  }
-  renderMovie({item}){
-    return(
-        <View style={styles.container}>
-          <Image source={{uri:item.posters.thumbnail}} style={styles.thumbnail}></Image>
-          <View style={styles.rightContainer}>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.year}>{item.year}</Text>
-            <TouchableNativeFeedback onPress={() => {Alert.alert("你点击了按钮！")}}>
-              <View style={styles.alterButton}>
-                <Text>点我</Text>
-              </View>
-            </TouchableNativeFeedback>
-          </View>
-        </View>
-    )
-  }
-  render() {
-    let {data,load} = this.state;
-    if(!load){
-      return (
-          <View style={styles.container}>
-            <Text>正在加载电影数据。。。</Text>
-          </View>
-      )
-    }
-    return(
-        <FlatList data={data} renderItem={this.renderMovie} style={styles.list} />
-    )
-  }
-}
+},{
+    //设置TabNavigator的位置
+    tabBarPosition: 'bottom',
+    //是否在更改标签时显示动画
+    animationEnabled: true,
+    //是否允许在标签之间进行滑动
+    swipeEnabled: true,
+    //按 back 键是否跳转到第一个Tab(首页)， none 为不跳转
+    backBehavior: "none",
+    //设置Tab标签的属性
+    tabBarOptions: {
+        //Android属性
+        upperCaseLabel: false,//是否使标签大写，默认为true
+        //共有属性
+        showIcon: true,//是否显示图标，默认关闭
+        showLabel: true,//是否显示label，默认开启
+        activeTintColor: '#EB3695',//label和icon的前景色 活跃状态下（选中）
+        inactiveTintColor: 'gray',//label和icon的前景色 活跃状态下（未选中）
+        style: { //TabNavigator 的背景颜色
+            backgroundColor: 'white',
+            height: 55,
+            padding:0,
+            margin:0
+        },
+        labelStyle:{
+            marginTop:-3,
+            marginRight:5
+        },
+        indicatorStyle: {//标签指示器的样式对象（选项卡底部的行）。安卓底部会多出一条线，可以将height设置为0来暂时解决这个问题
+            height: 0,
+        },
+    },
+});
+/*
+ * 配置堆栈导航
+ */
+const Stack = StackNavigator({
+    Tab: {
+        screen: Tab,
+    },
+    //DrawerNavigator跳转的页面也必须在这里注册
+    Mine: {
+        screen: MineScreen,
+    },
+});
 
+
+/**
+ * 配置侧滑菜单
+ */
+export default Drawer = DrawerNavigator({
+    Home: {
+        screen: Stack,
+        navigationOptions: {
+            drawerLabel: '个人中心',
+            drawerIcon: ({tintColor}) => (
+                <Image
+                    source={require('./app/image/home.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            ),
+        }
+    },
+    Mine: {
+        screen: MineScreen,
+        navigationOptions: {
+            drawerLabel: '我的钱包',
+            drawerIcon: ({tintColor}) => (
+                <Image
+                    source={require('./app/image/wallet.png')}
+                    style={[styles.icon, {tintColor: tintColor}]}
+                />
+            ),
+        }
+    }
+
+}, {
+    drawerWidth: 250, // 展示的宽度
+    drawerPosition: 'right', // 抽屉在左边还是右边
+});
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection:'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor:"#F5FCFF",
-    borderBottomWidth:1,
-    borderBottomColor:'gray'
-  },
-  thumbnail:{
-    width:53,
-    height:81
-  },
-  rightContainer:{
-    flex:1,
-    backgroundColor:'white',
-    height:81
-  },
-  title:{
-    fontSize:16,
-    marginBottom:8,
-    textAlign:'center'
-  },
-  year:{
-    textAlign:'center'
-  },
-  list:{
-    paddingTop:20,
-    backgroundColor:'#F5FCFF'
-  },
-  alterButton:{
-    width:80,
-    alignItems:'center',
-    backgroundColor:'#2196F3'
-  }
+    icon: {
+        width: 24,
+        height: 24,
+    }
 });
