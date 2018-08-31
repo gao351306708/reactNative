@@ -1,113 +1,68 @@
 /**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
+ * Created by gaoju on 2018/8/30.
  */
+import React, { Component } from 'react';
+import { Image,ImageBackground, StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
+import { StackActions,NavigationActions } from 'react-navigation'
+//使用Swiper插件 原生的ScrollView 滑动不流畅
+import Swiper from 'react-native-swiper'
 
-import React from 'react';
-import {
-    StyleSheet,
-    Text,
-    View,
-    StatusBar,
-    BackAndroid,
-    Platform
-} from 'react-native';
-import {Navigator} from 'react-native-deprecated-custom-components';
-import {getRouteMap, registerNavigator} from './route';
-import {createStore, applyMiddleware} from 'redux';
-import {Provider} from 'react-redux';
-import {createLogger} from 'redux-logger';
-import thunk from 'redux-thunk';
-import reducers from './reducers';
+let image1 = require('./image/tangsan.jpg');
+let image2 = require('./image/splash.jpg');
 
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1
-    },
-    navigator: {
-        flex: 1,
-        backgroundColor: 'white'
-    },
-    errorView: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: 'white'
-    },
-    errorText: {
-        color: 'red',
-        fontSize: 16
-    }
-
-});
-
-class App extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.renderScene = this.renderScene.bind(this);
-    }
-    componentWillMount() {
-    }
-
-    componentDidMount (){
-    }
-    //出场动画
-    configureScene(route) {
-        let sceneAnimation = getRouteMap().get(route.name).sceneAnimation;
-        if (sceneAnimation) {
-            return sceneAnimation;
-        }
-        //默认
-        return Navigator.SceneConfigs.PushFromRight
-    }
-
-    renderScene(route, navigator) {
-        this.navigator = navigator;
-        registerNavigator(navigator);
-        //Each component name should start with an uppercase letter
-        //jsx中的组件都得是大写字母开头, 否则将报错, expected a component class, got [object Object]
-        let Component = getRouteMap().get(route.name).component;
-        if (!Component) {
-            return (
-                <View style={styles.errorView}>
-                    <Text style={styles.errorText}>您所启动的Component未在routeMap中注册</Text>
-                </View>
-            );
-        }
-        return (
-            <Component {...route}/>
-        );
-    }
-    render() {
-        return(
-            <View style={styles.container}>
-                <StatusBar
-                    backgroundColor="black"
-                    barStyle="default"
-                />
-                <Navigator
-                    style={styles.navigator}
-                    configureScene={this.configureScene}
-                    renderScene={this.renderScene}
-                    initialRoute={{
-                        name: 'MainContainer'//MainContainer
-                      }}/>
-            </View>
-        )
-    }
-}
-
-export default function globalInit() {
-    var loggerMiddleware = createLogger();
-    var store = applyMiddleware(thunk, loggerMiddleware)(createStore)(reducers);
-    return () => {
-        return (
-            <Provider store={store}>
-                <App/>
-            </Provider>
-        );
+const { width, height } = Dimensions.get('window');
+export default class GuideView extends Component {
+    constructor() {
+        super();
     };
+    render() {
+        return (
+            <Swiper
+                loop={false}
+                showsPagination={false}
+            >
+                <Image source={image1}
+                       style={styles.backgroundImage} />
+                <ImageBackground source={image2} style={[styles.backgroundImage,styles.btnOut]} >
+                    <TouchableOpacity
+                        style={styles.btn}
+                        onPress={() => {
+                                        this.props.navigation.dispatch(StackActions.replace({
+                                            routeName: 'MainView'
+                                        }));
+                                    }}>
+                        <Text style={styles.btnText}>启动应用</Text>
+                    </TouchableOpacity>
+                </ImageBackground>
+            </Swiper>
+        )
+
+    }
 };
+var styles = StyleSheet.create({
+    contentContainer: {
+        width: width,
+        height: height,
+    },
+    backgroundImage: {
+        width: width,
+        height: height,
+    },
+    btnOut:{
+        alignItems:'center',
+    },
+    btn:{
+        width:150,
+        height:50,
+        backgroundColor:'#90ee90',
+        borderRadius:8,
+        justifyContent:'center',
+        alignItems:'center',
+        marginTop:400,
+
+    },
+    btnText:{
+        fontSize:18,
+        color:'#fff'
+    },
+});
