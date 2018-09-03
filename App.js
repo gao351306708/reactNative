@@ -7,7 +7,7 @@ import {StackNavigator,createStackNavigator,StackActions} from 'react-navigation
 import GuidePage from './app/index'
 import MainView from './app/container/mainContainer'
 
-const splashImg = require('./app/image/splash.jpg');//加载图片
+const splashImg = require('./app/image/splash3-1.jpg');//加载图片
 
 const { width, height } = Dimensions.get('window');
 

@@ -7,8 +7,9 @@ import { StackActions,NavigationActions } from 'react-navigation'
 //使用Swiper插件 原生的ScrollView 滑动不流畅
 import Swiper from 'react-native-swiper'
 
-let image1 = require('./image/tangsan.jpg');
-let image2 = require('./image/splash.jpg');
+let image1 = require('./image/splash3-3.jpg');
+let image2 = require('./image/splash3-4.jpg');
+let image3 = require('./image/splash3-2.jpg');
 
 const { width, height } = Dimensions.get('window');
 export default class GuideView extends Component {
@@ -23,16 +24,10 @@ export default class GuideView extends Component {
             >
                 <Image source={image1}
                        style={styles.backgroundImage} />
-                <ImageBackground source={image2} style={[styles.backgroundImage,styles.btnOut]} >
-                    <TouchableOpacity
-                        style={styles.btn}
-                        onPress={() => {
-                                        this.props.navigation.dispatch(StackActions.replace({
-                                            routeName: 'MainView'
-                                        }));
-                                    }}>
-                        <Text style={styles.btnText}>启动应用</Text>
-                    </TouchableOpacity>
+                <Image source={image2}
+                       style={styles.backgroundImage} />
+                <ImageBackground source={image3} style={[styles.backgroundImage,styles.btnOut]} >
+
                 </ImageBackground>
             </Swiper>
         )
@@ -58,7 +53,7 @@ var styles = StyleSheet.create({
         borderRadius:8,
         justifyContent:'center',
         alignItems:'center',
-        marginTop:400,
+        marginTop:450,
 
     },
     btnText:{
