@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#2c3e50',
     },
 });
+//定义跳转页面screen
 const RootStack = createStackNavigator({
     SplashView: SplashView,
     GuideView:GuidePage,

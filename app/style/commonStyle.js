@@ -10,9 +10,9 @@ const colors = {
   GRAY_COLOR: '#DADADA',
   TEXT_GRAY_COLOR: '#79767C',
   TEXT_COLOR: '#443046',
-  BACKGROUND_COLOR: '#F7F7F7',
+  BACKGROUND_COLOR: '#3f3f3f',
   LIGHT_BLUE_COLOR: '#5CACEE',//浅蓝色
-  LIGHT_GRAY_COLOR: '#cccccc44'//浅灰色
+  LIGHT_GRAY_COLOR: '#cccccc44'//浅灰色,
 };
 
 

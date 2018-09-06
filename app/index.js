@@ -6,12 +6,15 @@ import { Image,ImageBackground, StyleSheet, Text, Dimensions, TouchableOpacity }
 import { StackActions,NavigationActions } from 'react-navigation'
 //使用Swiper插件 原生的ScrollView 滑动不流畅
 import Swiper from 'react-native-swiper'
+import FadeInView from './component/fadeInView'
 
 let image1 = require('./image/splash3-3.jpg');
 let image2 = require('./image/splash3-4.jpg');
 let image3 = require('./image/splash3-2.jpg');
 
 const { width, height } = Dimensions.get('window');
+const btnH = height-60;
+const btnL = width-90;
 export default class GuideView extends Component {
     constructor() {
         super();
@@ -22,12 +25,16 @@ export default class GuideView extends Component {
                 loop={false}
                 showsPagination={false}
             >
-                <Image source={image1}
-                       style={styles.backgroundImage} />
+                <FadeInView style={styles.backgroundImage}>
+                    <Image source={image1}
+                           style={styles.backgroundImage} />
+                </FadeInView>
                 <Image source={image2}
                        style={styles.backgroundImage} />
-                <ImageBackground source={image3} style={[styles.backgroundImage,styles.btnOut]} >
-
+                <ImageBackground source={image3} style={styles.backgroundImage} >
+                    <Text onPress={()=>{
+                        this.props.navigation.dispatch(StackActions.replace({routeName: 'MainView'}))
+                    }} style={styles.btn} >start>></Text>
                 </ImageBackground>
             </Swiper>
         )
@@ -49,12 +56,9 @@ var styles = StyleSheet.create({
     btn:{
         width:150,
         height:50,
-        backgroundColor:'#90ee90',
-        borderRadius:8,
-        justifyContent:'center',
-        alignItems:'center',
-        marginTop:450,
-
+        color:'#fff',
+        marginLeft:btnL,
+        marginTop:btnH,
     },
     btnText:{
         fontSize:18,

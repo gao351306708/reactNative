@@ -91,13 +91,16 @@ const Tab = TabNavigator({
         //共有属性
         showIcon: true,//是否显示图标，默认关闭
         showLabel: true,//是否显示label，默认开启
-        activeTintColor: '#EB3695',//label和icon的前景色 活跃状态下（选中）
+        activeTintColor: '#dcdcdc',//label和icon的前景色 活跃状态下（选中）
         inactiveTintColor: 'gray',//label和icon的前景色 活跃状态下（未选中）
         style: { //TabNavigator 的背景颜色
-            backgroundColor: 'white',
+            backgroundColor: '#4a4a4a',
             height: 55,
             padding:0,
-            margin:0
+            margin:0,
+            borderTopWidth:1,
+            borderTopStyle:'solid',
+            borderTopColor:'#484848'
         },
         labelStyle:{
             marginTop:-3,
