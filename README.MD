@@ -14,4 +14,5 @@ npm install
 react-native run-android
 
 ## APP截图
-![picture_detail](./app/image/demo1.jpg)
+![picture_detail](./app/image/demo1.jpg)![picture_detail](./app/image/demo2.jpg)
+![picture_detail](./app/image/demo3.jpg)![picture_detail](./app/image/demo4.jpg)
