@@ -2,7 +2,7 @@
 react-native + react-navigation
 
 # 介绍
-一个简单的页面：加载启动页，页签切换，侧滑页等等。（适合入门）
+一个简单的app页面：加载启动页，页签切换，侧滑页等等。主页面为四个页签，每一部分模仿一个软件，目前模仿的有：“ 一个one”、“网易云音乐”等软件（适合入门）
 
 # 使用
 #### 1、使用git克隆项目到本地
@@ -14,5 +14,4 @@ npm install
 react-native run-android
 
 ## APP截图
-![picture_detail](./app/image/demo1.jpg)![picture_detail](./app/image/demo2.jpg)
-![picture_detail](./app/image/demo3.jpg)![picture_detail](./app/image/demo4.jpg)
+![picture_detail](./app/image/Apic1.png)![picture_detail](./app/image/Apic2.png)
