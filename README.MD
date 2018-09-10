@@ -15,3 +15,4 @@ react-native run-android
 
 ## APP截图
 ![picture_detail](./app/image/Apic1.png)![picture_detail](./app/image/Apic2.png)
+![picture_detail](./app/image/Apic3.png)
