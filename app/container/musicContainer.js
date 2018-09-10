@@ -28,6 +28,9 @@ const image2_3 = require('../image/music2-3.jpg');
 const image2_4 = require('../image/music2-4.jpg');
 const image2_5 = require('../image/music2-5.jpg');
 const image2_6 = require('../image/music2-6.jpg');
+//cid=u4s2zisluorvkgt&scene=list&pagename=movie&ext=cate.10001~offset.0~sort.5~pay.-1&columnname=video&
+// datatype=1&controlidx=0&columnidx=0&vid=&pid=
+//a24df937-1119-4cb8-b8ec-584d5acbc64e
 class MusicContainer extends Component {
   constructor(props) {
     super(props);
@@ -87,18 +90,34 @@ class MusicContainer extends Component {
                     </View>
                 </View>
                 <View style={styles.MsectionPart}>
-                    <View style={styles.MsectionPartHeader}>
+                    <View style={styles.MsectionPartHeaderHY}>
                         <Text style={styles.MsectionPartHeaderText}>会员专区 </Text>
                     </View>
-                    <View style={styles.MsectionPartHYImg}>
+                    <View style={styles.MsectionPartHYImgPart}>
                         <Swiper loop={true} height={170} width={width} showsPagination={false}>
-                            <Image source={image1}
-                                   style={styles.huiyuanImg} />
-                            <Image source={image2}
-                                   style={styles.huiyuanImg} />
-                            <Image source={image3}
-                                   style={styles.huiyuanImg} />
+                            <View style={styles.MsectionPartHYImg}>
+                                <ImageBackground source={image1} style={styles.huiyuanImg}>
+                                    <View style={styles.MsectionPartHYImgText}><Text style={styles.MsectionPartHYImgTextFont}>VIP专享</Text></View>
+                                </ImageBackground>
+                                <Text style={styles.huiyuanText}>我从来没有听过如此风骚的萨克斯</Text>
+                            </View>
+                            <View style={styles.MsectionPartHYImg}>
+                                <ImageBackground source={image2} style={styles.huiyuanImg}>
+                                    <View style={styles.MsectionPartHYImgText}><Text style={styles.MsectionPartHYImgTextFont}>VIP专享</Text></View>
+                                    <View style={styles.MsectionPartHYImgPlay}><Icon name="play-arrow"/></View>
+                                </ImageBackground>
+                                <Text style={styles.huiyuanText}>等有一天，你就找到了某处和我促膝长谈</Text>
+                            </View>
+                            <View style={styles.MsectionPartHYImg}>
+                                <ImageBackground source={image3} style={styles.huiyuanImg}>
+                                    <View style={styles.MsectionPartHYImgText}><Text style={styles.MsectionPartHYImgTextFont}>VIP专享</Text></View>
+                                </ImageBackground>
+                                <Text style={styles.huiyuanText}>这一次，你会为了某个她放弃所有</Text>
+                            </View>
                         </Swiper>
+                    </View>
+                    <View style={styles.MsectionPartHeaderHY}>
+                        <Text style={styles.MsectionPartHeaderHYFooterText}>进入专区 > </Text>
                     </View>
                 </View>
             </ScrollView>
@@ -153,15 +172,44 @@ const styles = StyleSheet.create({
         flex:1,
         width:width,
     },
-    MsectionPartHYImg:{
+    MsectionPartHYImgPart:{
         width:width
+    },
+    MsectionPartHYImg:{
+        height:'100%',
+        width:widthHY,
+        borderRadius:5,
+        backgroundColor:'white',
+    },
+    MsectionPartHYImgText:{
+        backgroundColor:'#f48077',
+        width:40,
+        borderBottomRightRadius:5
+    },
+    MsectionPartHYImgPlay:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width:40,
+        height:40,
+        opacity:0.7,
+        borderRadius:20,
+        backgroundColor:'white',
+        marginLeft: widthHY-50,
+        marginTop: 60
+    },
+    MsectionPartHYImgTextFont:{
+        fontSize:10,color:'white',height:20,lineHeight:20,
+        textAlign:'center'
     },
     huiyuanImg:{
         flex:1,
-        textAlign:'center',
-        width:widthHY,
-        marginLeft:2,
-        marginRight:2
+        width:'100%',
+    },
+    huiyuanText:{
+        fontSize:14,
+        height:35,
+        lineHeight:35,
+        marginLeft:10
     },
     articleImg:{
         width:"100%",
@@ -197,6 +245,23 @@ const styles = StyleSheet.create({
     MsectionPartHeaderText:{
         color:'#dcdcdc',
         fontSize:18
+    },
+    MsectionPartHeaderHY:{
+        flex:1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        margin:10
+    },
+    MsectionPartHeaderHYFooterText:{
+        color:'#dcdcdc',
+        fontSize:16,
+        width:105,
+        padding:5,
+        borderWidth:1,
+        borderStyle:'solid',
+        borderColor:'white',
+        borderRadius:5,
+        textAlign:'center'
     },
     MsectionPart2:{
         flex:1,

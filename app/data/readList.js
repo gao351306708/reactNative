@@ -20,7 +20,7 @@ let data2 = Mock.mock({
     'list|6':[{
         'id|+1':0,
         'count|10-50':1,
-        'imgUrl|+1':7,
+        'imgUrl|7-12':1,
         'content|1-2':'那些文艺的法国电影',
     }]
 })

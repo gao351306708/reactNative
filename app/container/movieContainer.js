@@ -10,7 +10,7 @@ import {
   Image,
   Dimensions,
   ListView,
-  TouchableOpacity
+  TouchableOpacity,TouchableWithoutFeedback,Linking
 } from 'react-native';
 
 class MovieContainer extends Component {
@@ -18,10 +18,16 @@ class MovieContainer extends Component {
   constructor(props) {
     super(props);
   }
+    open=()=>{
+        let url = 'https://v.qq.com';
+        Linking.openURL(url)
+    }
   render() {
     return (
-          <View>
-            <Text>movie page</Text>
+          <View style={styles.container}>
+              <TouchableWithoutFeedback onPress={this.open}>
+                  <View><Text>点击</Text></View>
+              </TouchableWithoutFeedback>
           </View>
     );
   }
@@ -33,13 +39,5 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#F5FCFF',
     },
-    button: {
-        width: 120,
-        height: 45,
-        borderRadius: 5,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#4398ff',
-    }
 });
 export default MovieContainer;

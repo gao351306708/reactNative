@@ -38,3 +38,20 @@ export function getDateStrListBeforeNow(beginYear, beginMonth) {
   }
   return dateList;
 }
+/**
+ * 拼接参数{name:"jobo",sex:"meal"} => name=jobo&sex=meal
+ */
+export function bodyUrlencoded(body){
+  if(body){
+    let data = Object.entries(body);
+    let str = `${data[0][0]}=${data[0][1]}`;
+    data.forEach((item,i) => {
+      if (i>0) {
+        str+= `&${item[0]}=${item[1]}`;
+      }
+    })
+    return str
+  }else {
+    return ''
+  }
+}
