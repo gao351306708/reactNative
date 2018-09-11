@@ -1,11 +1,12 @@
 /*
-* APP启动首页
-* */
+ * APP启动首页
+ * */
 import React, { Component } from 'react';
 import { View, Text, StyleSheet,Animated,Dimensions } from 'react-native';
 import {StackNavigator,createStackNavigator,StackActions} from 'react-navigation'
 import GuidePage from './app/index'
-import MainView from './app/container/mainContainer'
+import LoginPage from './app/container/loginContainer'
+import MainView from './app/route'
 
 const splashImg = require('./app/image/splash3-1.jpg');//加载图片
 
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
 const RootStack = createStackNavigator({
     SplashView: SplashView,
     GuideView:GuidePage,
+    LoginView:LoginPage,
     MainView:MainView
 },{
     initialRouteName: 'SplashView',//默认第一个显示

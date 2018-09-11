@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,Dimensions,ScrollView,RefreshControl,TouchableHighlight,
-  View,Alert,Image
+  View,Image
 } from 'react-native';
 import {getAllPicture,getUserAllInfo} from '../util/server'
 import Unsplash from 'unsplash-js/native'

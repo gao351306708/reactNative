@@ -1,9 +1,10 @@
 /**
+ * 引导页，也可以作为广告页
  * Created by gaoju on 2018/8/30.
  */
 import React, { Component } from 'react';
-import { Image,ImageBackground, StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
-import { StackActions,NavigationActions } from 'react-navigation'
+import { Image,ImageBackground, StyleSheet, Text, Dimensions,TouchableOpacity,AsyncStorage } from 'react-native';
+import { StackActions } from 'react-navigation'
 //使用Swiper插件 原生的ScrollView 滑动不流畅
 import Swiper from 'react-native-swiper'
 import FadeInView from './component/fadeInView'
@@ -19,6 +20,17 @@ export default class GuideView extends Component {
     constructor() {
         super();
     };
+    pressClick(){
+        let _this = this;
+        //获取用户信息
+        AsyncStorage.getItem('username').then((value)=>{
+            if(value == 'null'|| value == null ||value == ''){
+                _this.props.navigation.dispatch(StackActions.replace({routeName: 'LoginView'}))//没有登录信息则跳转到登录页面
+            }else {
+                _this.props.navigation.dispatch(StackActions.replace({routeName: 'MainView'}));//如果登录了 就直接跳转到主页
+            }
+        })
+    }
     render() {
         return (
             <Swiper
@@ -32,9 +44,9 @@ export default class GuideView extends Component {
                 <Image source={image2}
                        style={styles.backgroundImage} />
                 <ImageBackground source={image3} style={styles.backgroundImage} >
-                    <Text onPress={()=>{
-                        this.props.navigation.dispatch(StackActions.replace({routeName: 'MainView'}))
-                    }} style={styles.btn} >start>></Text>
+                    <TouchableOpacity onPress={this.pressClick.bind(this)}>
+                        <Text style={styles.btn} >start>></Text>
+                    </TouchableOpacity>
                 </ImageBackground>
             </Swiper>
         )
@@ -50,18 +62,11 @@ var styles = StyleSheet.create({
         width: width,
         height: height,
     },
-    btnOut:{
-        alignItems:'center',
-    },
     btn:{
         width:150,
         height:50,
         color:'#fff',
         marginLeft:btnL,
         marginTop:btnH,
-    },
-    btnText:{
-        fontSize:18,
-        color:'#fff'
     },
 });
