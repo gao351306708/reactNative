@@ -22,6 +22,7 @@ import PictureScreen from './container/pictureContainer';
 //侧滑菜单的页面
 import MineScreen from "./container/drawer/Mine";
 import FriendScreen from "./container/drawer/Friend";
+import PictureInfo from "./container/picture/pictureInfo";
 /**
  * 配置底部标签
  */
@@ -115,19 +116,16 @@ const Tab = TabNavigator({
     },
 });
 /*
- * 配置堆栈导航
+ * 配置页面导航
  */
 const Stack = createStackNavigator({
     Tab: {
         screen: Tab,
     },
     //DrawerNavigator跳转的页面也必须在这里注册
-    Mine: {
-        screen: MineScreen
-    },
-    Friends: {
-        screen: FriendScreen
-    },
+    Mine: {screen: MineScreen},
+    Friends: {screen: FriendScreen},
+    PictureInfo: {screen: PictureInfo},
 },{
     headerMode:'none',//去掉头部
 });
@@ -172,7 +170,7 @@ export default Drawer = DrawerNavigator({
     drawerWidth: 250, // 展示的宽度
     drawerPosition: 'left', // 抽屉在左边还是右边
     drawerBackgroundColor: '#fff',//抽屉容器的背景颜色 默认为白色
-    contentComponent: props => {
+    contentComponent: (props) => {
         return (
             <View>
                 <SafeAreaView>
@@ -221,6 +219,7 @@ export default Drawer = DrawerNavigator({
 function ExitHandle(){
     //清除登录信息
     AsyncStorage.removeItem('username');
+    //this.props.navigation.navigate('DrawerClose')
 }
 const styles = StyleSheet.create({
     icon: {
